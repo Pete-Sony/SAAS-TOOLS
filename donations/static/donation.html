@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://js.stripe.com/v3/"></script>
+    <title>Donation Page</title>
+</head>
+<body>
+    <h1>Make a Donation</h1>
+    <form id="donationForm">
+        <label for="amount">Amount (in cents):</label>
+        <input type="number" id="amount" name="amount" required><br><br>
+
+        <label for="currency">Currency:</label>
+        <select id="currency" name="currency" required>
+            <option value="usd">USD</option>
+            <option value="eur">EUR</option>
+            <option value="gbp">GBP</option>
+            <!-- Add other currencies as needed -->
+        </select><br><br>
+
+        <button type="submit">Donate</button>
+    </form>
+
+    <script>
+        document.getElementById('donationForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const amount = document.getElementById('amount').value;
+            const currency = document.getElementById('currency').value;
+
+            const data = {
+                amount: parseInt(amount),
+                currency: currency
+            };
+
+            try {
+                const response = await fetch('/donate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const body = await response.json();
+                window.location.href = body.url;
+                // No need to handle redirection manually here; backend will handle it
+            } catch (error) {
+                alert('An error occurred: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
