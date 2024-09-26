@@ -7,7 +7,7 @@ from starlette.requests import Request
 import stripe
 
 from core.config import get_settings
-from router import donations, webhooks
+from router import donations, webhooks, subscriptions
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -19,6 +19,7 @@ stripe.api_key = settings.stripe_secret_key
 
 app.include_router(donations.router)
 app.include_router(webhooks.router)
+app.include_router(subscriptions.router)
 
 @app.get('/', response_class=HTMLResponse)
 async def read_item(request: Request):

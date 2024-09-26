@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 
 import stripe
 
-from schemas.payment import DonationRequst
+from schemas.payment import DonationRequest
 from core.config import get_settings
 
 router = APIRouter()
@@ -11,7 +11,7 @@ router = APIRouter()
 settings = get_settings()
 
 @router.post('/donate')
-async def create_donation(donation: DonationRequst):
+async def create_donation(donation: DonationRequest):
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
@@ -26,8 +26,8 @@ async def create_donation(donation: DonationRequst):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url= settings.domain_name + '/static/success.html',
-            cancel_url= settings.domain_name +  '/static/cancel.html',
+            success_url = settings.domain_name + '/static/success.html',
+            cancel_url = settings.domain_name + '/static/cancel.html',
         )
 
         return JSONResponse(content={"url": checkout_session.url})
