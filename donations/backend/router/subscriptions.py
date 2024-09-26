@@ -23,6 +23,6 @@ async def subscribe(subscription: SubscriptionRequest):
             }]
         )
 
-        return JSONResponse(content={"session_id": checkout_session.id})
+        return JSONResponse(content={"url": checkout_session.url})
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))

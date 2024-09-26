@@ -18,28 +18,9 @@ The api endpoints are available in ```{domain}/docs``` endpoint. Please go there
 ```/donate``` - The frontend will send amount and currency as request body. A response of redirect url will be returned as json, 
 which should be used to redirect to the checkout page.
 
-```/subscribe```- The frontend will send price_id, the backend will return a session_id. 
-The frontend needs to use stripe sdk and stripe publishable api key to handle redirect.
-It will be available in stripe documentation.
+```/subscribe```- The frontend will send price_id, the backend will redirect.
+This is the only method while using stripe checkout page. 
 
-Example code generated in chatgpt:
-```
-fetch('/create-checkout-session', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ price_id: 'price_1Hh1EoK6BKxxxYOURPRICEID' })
-})
-  .then(response => response.json())
-  .then(session => {
-    const stripe = Stripe('your-publishable-key');
-    return stripe.redirectToCheckout({ sessionId: session.id });
-  })
-  .catch(error => {
-    console.error('Error creating Checkout session:', error);
-});
-```
 Please refer the above code.
 
 For dry running, create a product in the stripe dashboard with mode as subscription. 
