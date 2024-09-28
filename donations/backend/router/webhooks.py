@@ -23,7 +23,7 @@ async def stripe_webhook(request: Request):
         raise HTTPException(status_code=400, detail='Invalid signature')
 
     # Handle the event
-    if event["type"] == "payment_intent.succeeded":
-        client_secret = event["data"]["object"]["client_secret"]  # contains the payment intent data
-        print("PaymentIntent was successful!", client_secret)
+    if event["type"] == "customer.subscription.created":
+        data = event["data"]["object"]["customer"]  # contains the payment intent data
+        print("Subscription was successful!", data)
     return {'status': 'success'}

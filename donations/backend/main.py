@@ -1,3 +1,4 @@
+from dotenv import find_dotenv
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -16,7 +17,6 @@ templates = Jinja2Templates(directory="static")
 settings = get_settings()
 
 stripe.api_key = settings.stripe_secret_key
-
 app.include_router(donations.router)
 app.include_router(webhooks.router)
 app.include_router(subscriptions.router)

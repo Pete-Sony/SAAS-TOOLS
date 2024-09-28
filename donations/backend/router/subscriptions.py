@@ -14,8 +14,8 @@ settings = get_settings()
 async def subscribe(subscription: SubscriptionRequest):
     try:
         checkout_session = stripe.checkout.Session.create(
-            success_url=settings.domain_name + '/static/success.html',
-            cancel_url=settings.domain_name + '/static/cancel.html',
+            success_url=settings.domain_name +  '?success=true',
+            cancel_url=settings.domain_name + '?success=false',
             mode = 'subscription',
             line_items=[{
                 'price': subscription.price_id,
