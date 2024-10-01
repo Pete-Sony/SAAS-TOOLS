@@ -1,25 +1,56 @@
+'use client'
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import Box from '@mui/joy/Box';
+import Chip from '@mui/joy/Chip';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
 
-const TabPanelMap = {
-  TabPanel1: () => {
-    return (
-     <Box sx={{ width: '200px',height:"300px",bgcolor:"red"}}>
-        First
-     </Box>
+export default function TabNavigation({ tabData, tabPanels }) {
+  const pathname = usePathname();
+  const [activeTab, setActiveTab] = useState(0);
+
+  const getTabValue = useCallback((label) => 
+    label.toLowerCase().replace(/\s+/g, '-'), []);
+
+  const updateUrl = useCallback((newTab) => {
+    const newTabValue = getTabValue(tabData[newTab].label);
+    const pathParts = pathname.split('/');
+    const tabValues = tabData.map(tab => getTabValue(tab.label));
+    // Find the index of any existing tab value in the path
+    const existingTabIndex = pathParts.findIndex(part => tabValues.includes(part));
+    
+    if (existingTabIndex !== -1) {
+      // Replace the existing tab value
+      pathParts[existingTabIndex] = newTabValue;
+    } else {
+      // If no existing tab value, add the new one to the end
+      pathParts.push(newTabValue);
+    }
+    const newPath = pathParts.join('/').replace(/\/+/g, '/');
+    window.history.pushState(null, '', newPath);
+  }, [pathname, tabData, getTabValue]);
+
+  useEffect(() => {
+    const tabIndex = tabData.findIndex(tab => 
+      pathname.includes(getTabValue(tab.label))
     );
-  },
-  TabPanel2: () => { 
-    return (
-      <b>Second</b> 
-    ); 
-  } 
-};
+    
+    if (tabIndex !== -1) {
+      setActiveTab(tabIndex);
+    } else {
+      updateUrl(0);
+      setActiveTab(0);
+    }
+  }, [pathname, tabData, getTabValue, updateUrl]);
 
-export default function TabNavigation() {
+  const onTabChange = useCallback((event, newValue) => {
+    setActiveTab(newValue);
+    updateUrl(newValue);
+  }, [updateUrl]);
+
   return (
     <Box sx={{
         overflowX: 'auto',
@@ -27,32 +58,45 @@ export default function TabNavigation() {
         msOverflowStyle: 'none',
         WebkitScrollbar: { display: 'none' },
         }}>
-    <Tabs tabFlex="auto"
+    <Tabs  defaultValue={0}
+     value={activeTab}
+     onChange={onTabChange}
      sx={{
           backgroundColor: 'white', 
           whiteSpace: 'nowrap',
           overflowX: 'hidden',
+          scrollSnapAlign: 'start',
           '& .MuiTab-root': {
-            bgcolor: 'transparent' ,
+            backgroundColor: 'transparent' ,
              '&.Mui-selected': {
-              bgcolor: 'transparent',
+              backgroundColor: 'transparent',
               minWidth: 'auto',
           }},
-        
-          scrollSnapAlign: 'start'
-     }}
-         defaultValue={0}
-            >
-      <TabList>
-        <Tab>First tab</Tab>
-        <Tab>Second tab</Tab>
-        <Tab>Third tab</Tab>
-        <Tab>Long tab</Tab>
-        <Tab>Even Longer tab</Tab>
+     }}>
+      <TabList tabFlex="auto">
+      {tabData.map((tab, index) => (
+          <Tab key={index}>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 0.5,
+              color: 'black',
+            }}>
+              {tab.label}
+              {tab.count !== undefined && tab.count > 0 && (
+                <Chip size="sm" variant="outlined" color="neutral">
+                  {tab.count}
+                </Chip>
+              )}
+            </Box>
+          </Tab>
+        ))}
       </TabList>
-      {Object.keys(TabPanelMap).map((key, index) => (
-        <TabPanel key={index} value={index}>
-          {TabPanelMap[key]()}
+      {Object.entries(tabPanels).map(([key, Component], index) => (
+        <TabPanel key={key} value={index}>
+          <Component />
         </TabPanel>
       ))}
     </Tabs>
