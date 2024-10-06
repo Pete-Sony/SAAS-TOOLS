@@ -1,0 +1,28 @@
+# React Hooks
+
+
+## useMemo
+ This hook is used to cache slow functions, functions that take a lot of time (programatically) to compute
+ 
+
+ ### Properties
+ - It takes a function and a list of dependencies
+ - It has another use case called referential equality.
+ Check out what referntial equality is [here]()
+ 
+
+ ### Description
+  It can be used to cache functions in component that are computationally expensive, when there are multiple renders of the component. 
+  You could cache functions that are unrelated to the functions itself.
+ 
+
+ ### Caveats
+ - Has a performance Overlaod, It takes up memory so use it wisely.
+ - It is triggerd only when it's dependencies change
+
+
+## useCallback
+
+This hook is similar to useMemo
+The difference is that useMemo returns the value of the function, while useCallback returns the function itself.
+Therefore any function that is assigned to a variable using useCallback can be used as a function.
