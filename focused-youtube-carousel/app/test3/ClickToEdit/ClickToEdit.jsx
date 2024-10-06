@@ -1,13 +1,18 @@
 'use client'
 
-import { useState, useRef } from 'react';
-import {Link,Input} from "@mui/joy";
+import { useState, useRef, useEffect } from 'react';
+import {Link,Input,styled} from "@mui/joy";
 import EditIcon from '@mui/icons-material/Edit';
 
- export default function ClickToEdit({children}) {
+export default function ClickToEdit({children, onUpdate}) {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(children);
   const inputRef = useRef(null);
+
+  const StyledEditIcon = styled(EditIcon)`
+    cursor: pointer;
+  `;
+  
   const handleClick = ()=>{ 
     setIsEditing(!isEditing);
     setTimeout(() => {
@@ -18,27 +23,39 @@ import EditIcon from '@mui/icons-material/Edit';
       }
       
     }, 0);
-  
- 
   }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+ 
+      setIsEditing(false);
+  
+    }
+    if(e.key === 'Escape'){
+      setIsEditing(false);
+      setInputValue(children);
+    }
+  }
+
   const handleChange = (e)=>{
     setInputValue(e.target.value);
   }
-  const renderCount = useRef(0);
-  renderCount.current++;
-  return (
+  
+  const onBlur = async ()=>{
+    setIsEditing(false);
+   
+  }
+  
+      return (
   <>
   {isEditing ?
-   <Input   type="text" value={inputValue} onChange={handleChange} />
+   <Input slotProps={{input:{ref:inputRef}}}  onBlur={onBlur} type="text" value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown}/>
     :
-   <Link onClick={handleClick} endDecorator={<EditIcon/>} >{children}</Link> }
-   {/* <div>
-  { `I've rendered this component ${renderCount.current} times` }
-   </div>
-  */}
+   <Link sx={{cursor:'pointer'}} onClick={handleClick} endDecorator={<StyledEditIcon/>} >{inputValue}</Link> }
+
   </>
 
- 
+    
   )
 }
 

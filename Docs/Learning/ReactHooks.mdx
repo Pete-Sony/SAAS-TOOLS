@@ -26,3 +26,22 @@
 This hook is similar to useMemo
 The difference is that useMemo returns the value of the function, while useCallback returns the function itself.
 Therefore any function that is assigned to a variable using useCallback can be used as a function.
+
+
+## useEffect
+
+The code inside the useEffect hook only runs only between renders of the component, provided the dependencies are changed
+Anytime a side effect is performed useEffect is used
+
+### Properties
+- It takes a function and a list of dependencies'
+- If no dependencies are provided, the code inisde the useEffect only runs onMount
+
+Clean up function?
+it should return a clean up function with cleanup logic, to disconnect from the system
+The return code runs before hand the setup code runs
+
+The return code is also called anytime the component unmounts
+
+
+
