@@ -33,7 +33,7 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx"
-  ],
+, "app/switchless/_components/PageHeaderV2"  ],
   "exclude": [
     "node_modules"
   ]
