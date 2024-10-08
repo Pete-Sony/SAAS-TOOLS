@@ -1,10 +1,15 @@
 
+'use client'
 import React from 'react'
-import TestClickToEdit from './ClickToEdit/TestClickToEdit'
+
+import { PageHeaderV2 } from 'switchless'
+import {Pagination} from 'switchless'
 function page() {
   return (
     <div>
-        <TestClickToEdit/>
+
+       <Pagination count={10} disabled/>
+   
     </div>
   )
 }
