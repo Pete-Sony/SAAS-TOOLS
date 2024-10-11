@@ -1,11 +1,11 @@
 "use client"
 import { Button,Link } from "@mui/joy";
 import Box from "@mui/joy/Box";
-import TabNavigation from "../_components/TabPanel";
-import Logo from "../_components/LogoV1";
-import LogoV2 from "../_components/Logo";
-import TableData from "../_components/TableData";
-import CustomTable from "../_components/Table";
+import TabNavigation from "../switchless/_components/TabNavigation/TabNavigation";
+import Logo from "../switchless/_components/LogoV1";
+import LogoV2 from "../switchless/_components/Logo";
+import TableData from "../switchless/_components/TabNavigation/TableData";
+import CustomTable from "../switchless/_components/Table";
 
 function Page() {
   const { PORs } = TableData;

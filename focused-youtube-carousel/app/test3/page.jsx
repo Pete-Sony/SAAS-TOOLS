@@ -2,14 +2,16 @@
 'use client'
 import React from 'react'
 
-import { PageHeaderV2 } from 'switchless'
-import {Pagination} from 'switchless'
+import TestLinkV2 from '@/app/switchless/_components/LinkV2/TestLinkV2'
+
+import  TestTabnNavigation from '@/app/switchless/_components/TabNavigation/TestTabnNavigation'
 function page() {
   return (
     <div>
 
-       <Pagination count={10} disabled/>
-   
+     
+       <TestLinkV2/>
+       <TestTabnNavigation/>
     </div>
   )
 }
