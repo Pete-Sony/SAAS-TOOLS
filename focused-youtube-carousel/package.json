@@ -23,7 +23,7 @@
     "react-dom": "^18",
     "recharts": "^2.12.7",
     "stripe": "^16.11.0",
-    "switchless": "^0.8.5"
+    "switchless": "^0.8.6"
   },
   "devDependencies": {
     "@types/node": "^20",
