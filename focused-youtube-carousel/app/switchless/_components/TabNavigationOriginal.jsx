@@ -2,12 +2,13 @@
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
+import TabPanel from '@mui/joy/TabPanel';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-export default function TabNavigation({ tabData, tabPanels, vertical = false }) {
+export default function TabNavigation({ tabData, tabPanels }) {
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState(0);
 
@@ -50,62 +51,55 @@ export default function TabNavigation({ tabData, tabPanels, vertical = false }) 
     updateUrl(newValue);
   }, [updateUrl]);
 
-  const tabStyles = {
-    backgroundColor: 'white',
-    whiteSpace: 'nowrap',
-    display: 'inline-block',
-    scrollSnapAlign: 'start',
-    '& .MuiTab-root': {
-      backgroundColor: 'transparent',
-      '&.Mui-selected': {
-        backgroundColor: 'transparent',
-        minWidth: 'auto',
-      }
-    },
-    ...(vertical ? {
-      flexDirection: 'column',
-      height: '100%',
-    } : {
-      overflowX: 'hidden',
-    })
-  };
-
-  const boxStyles = {
-    ...(vertical ? {
-      display: 'flex',
-      height: '100%',
-    } : {
-      overflowX: 'auto',
-      scrollbarWidth: 'none',
-      msOverflowStyle: 'none',
-      '&::-webkit-scrollbar': { display: 'none' },
-    })
-  };
-
   return (
-    <Box sx={boxStyles}>
-      <Tabs
-        orientation={vertical ? 'vertical' : 'horizontal'}
-        defaultValue={0}
-        value={activeTab}
-        onChange={onTabChange}
-        sx={tabStyles}
-      >
-        <TabList sx={vertical ? { flexGrow: 1 } : {}}>
-          {tabData.map((tab, index) => (
-            <Tab key={index}>
-              <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 0.5, color: 'black'}}>
-                {tab.label}
-                {tab.count !== undefined && tab.count > 0 && (
-                  <Chip size="sm" variant="outlined" color="neutral">
-                    {tab.count}
-                  </Chip>
-                )}
-              </Box>
-            </Tab>
-          ))}
-        </TabList>
-      </Tabs>
+    <Box sx={{
+        overflowX: 'auto',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+        WebkitScrollbar: { display: 'none' },
+        }}>
+    <Tabs  defaultValue={0}
+     value={activeTab}
+     onChange={onTabChange}
+     sx={{
+          backgroundColor: 'white', 
+          whiteSpace: 'nowrap',
+          overflowX: 'hidden',
+          scrollSnapAlign: 'start',
+          '& .MuiTab-root': {
+            backgroundColor: 'transparent' ,
+             '&.Mui-selected': {
+              backgroundColor: 'transparent',
+              minWidth: 'auto',
+          }},
+     }}>
+      <TabList tabFlex="auto">
+      {tabData.map((tab, index) => (
+          <Tab key={index}>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 0.5,
+              color: 'black',
+            }}>
+              {tab.label}
+              {tab.count !== undefined && tab.count > 0 && (
+                <Chip size="sm" variant="outlined" color="neutral">
+                  {tab.count}
+                </Chip>
+              )}
+            </Box>
+          </Tab>
+        ))}
+      </TabList>
+      {Object.entries(tabPanels).map(([key, Component], index) => (
+        <TabPanel key={key} value={index}>
+          <Component />
+        </TabPanel>
+      ))}
+    </Tabs>
     </Box>
   );
 }
