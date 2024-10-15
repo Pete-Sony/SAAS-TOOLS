@@ -1,6 +1,17 @@
 'use client'
-import {Box, Typography, Breadcrumbs ,Link} from '@mui/joy';
+import {Box, Typography, Breadcrumbs } from '@mui/joy';
+import { Link as JoyLink } from '@mui/joy'
 import React from 'react';
+import NextLink from 'next/link';
+
+// Create a basic link component in switchless and import it here
+const BreadcrumbLink = ({href, children}) => {
+	return (
+			<JoyLink color="primary" component={NextLink} href={href}>
+				{children}
+			</JoyLink>
+	)
+}
 
 const BreadcrumbsCustom = function({breadcrumbs}){
 
@@ -9,9 +20,9 @@ const BreadcrumbsCustom = function({breadcrumbs}){
 			{breadcrumbs.map((b, index) => (
 				<React.Fragment key={index}>
 					{b.href ?
-					<Link key={b.href} color="primary" href={b.href}>
+					<BreadcrumbLink key={b.href}  href={b.href}>
 					  {b.text}
-					</Link> :
+					</BreadcrumbLink> :
 					  <Typography key={b.text}>{b.text}</Typography>
 					}
 				</React.Fragment>
@@ -19,6 +30,10 @@ const BreadcrumbsCustom = function({breadcrumbs}){
 		</Breadcrumbs>
 	)
 }
+
+
+
+
 
 export default function PageHeaderV2({header="PageHeader",RightButtons=null,headerLevel = 'h3',breadcrumbs = null }){
 
@@ -60,10 +75,3 @@ export default function PageHeaderV2({header="PageHeader",RightButtons=null,head
 		</Box>
 	)
 }
-
-/* -------------------------------------------------------------------------- */
-/*                              Things to Change¸    
-/*1. Change to Next.js 14 App Router Link
-/*
-                         */
-/* -------------------------------------------------------------------------- */
