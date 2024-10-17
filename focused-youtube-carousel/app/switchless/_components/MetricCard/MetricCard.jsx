@@ -1,32 +1,32 @@
 import React from 'react';
-import { Box, Typography, Card } from '@mui/joy';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import { Typography, Card, CardContent, Chip } from '@mui/joy';
 
-const MetricCard = ({ title, value, previousValue, change }) => {
+import SouthEastIcon from '@mui/icons-material/SouthEast';
+import NorthEastIcon from '@mui/icons-material/NorthEast';
+
+const MetricCard = ({ title, value, previousValue, width}) => {
+  const change = previousValue !== 0
+    ? ((value - previousValue) / Math.abs(previousValue)) * 100
+    : 0;
+  
   const isPositive = change >= 0;
-  const changeColor = isPositive ? 'success.500' : 'danger.500';
-  const ArrowIcon = isPositive ? ArrowUpwardIcon : ArrowDownwardIcon;
+  const chipColor = isPositive ? 'success' : 'danger';
+  const TextColor = isPositive ? '#6ae900' : '#f44336';
+  const ArrowIcon = isPositive ? NorthEastIcon : SouthEastIcon;
 
   return (
-    <Card variant="outlined" sx={{ width: '200px', p: 2 }}>
-      <Typography level="body-sm" mb={1}>
-        {title}
-      </Typography>
-      <Typography level="h4" fontWeight="bold">
-        {value}
-      </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-        <Typography level="body-xs" color="neutral.500">
-          from {previousValue}
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', ml: 1 }}>
-          <ArrowIcon sx={{ fontSize: 16, color: changeColor }} />
-          <Typography level="body-xs" color={changeColor} ml={0.5}>
-            {Math.abs(change)}%
+    <Card variant="outlined" sx={{ width: width, p: 1.5 }}>
+      <CardContent sx={{alignItems: 'center'}}>
+      <Typography level="body-sm" > {title} </Typography>
+      <Typography level="h2" fontWeight="bold">{value} </Typography>
+      <Typography level="body-xs" >from {previousValue}</Typography>
+        <Chip variant="soft" color={chipColor}
+         endDecorator={<ArrowIcon sx={{fontSize: 14, color: TextColor}} />} >
+          <Typography level="body-xs" sx={{color: TextColor}} ml={0.5}>
+            {change >= 0 ? '+' : '-'}{Math.abs(change)}%
           </Typography>
-        </Box>
-      </Box>
+        </Chip>
+      </CardContent>
     </Card>
   );
 };

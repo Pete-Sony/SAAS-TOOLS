@@ -11,9 +11,9 @@ function TestMetricCard() {
     <Box sx={{ display: 'flex', gap: 2 }}>
   <MetricCard
     title="Cash Balance"
-    value="-$1.99M"
-    previousValue="-$1.88M"
-    change={-6}
+    value={-1000}
+    previousValue={-2000}
+    width="150px"
   />
   <MetricCard
     title="Op Cash Flow"
