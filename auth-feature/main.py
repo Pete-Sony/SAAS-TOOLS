@@ -1,5 +1,6 @@
 # Add imports here
 from  typing import Annotated
+from typing_extensions import Dict
 
 from fastapi import FastAPI, Security
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -19,8 +20,9 @@ def public():
     return {"message": "Hello World"}
 
 @app.get("/private")
-def private(auth_result: str = Security(auth.verify)):
-    return auth_result
+def private(auth_result: Dict = Security(auth.verify)):
+    email = auth_result['email']
+    return email
 
 # The main application
 if __name__ == "__main__":
