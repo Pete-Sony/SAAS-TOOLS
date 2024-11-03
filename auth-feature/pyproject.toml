@@ -8,6 +8,7 @@ dependencies = [
     "fastapi[standard]>=0.115.4",
     "pydantic-settings>=2.6.1",
     "pyjwt[crypto]>=2.9.0",
+    "sqlalchemy>=2.0.36",
 ]
 
 [tool.pyright]
