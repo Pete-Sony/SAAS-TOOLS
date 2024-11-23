@@ -1,10 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import YouTubeIframe from "./YouTubeIframe";
 
 export default function Home() {
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
+      <h1>So may we start...</h1>
+      <YouTubeIframe/>
+      {/* <main className={styles.main}>
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -89,7 +92,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
-      </footer>
+      </footer> */}
     </div>
   );
 }
