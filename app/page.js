@@ -5,7 +5,7 @@ import YouTubeIframe from "./YouTubeIframe";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <h1>So may we start...</h1>
+      <h1>So may we Start?</h1>
       <YouTubeIframe/>
       {/* <main className={styles.main}>
         <Image
