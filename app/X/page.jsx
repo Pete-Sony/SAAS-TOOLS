@@ -4,7 +4,7 @@ import Tweet from './Tweet';
 
 
 // import { useRef, useState } from 'react';
-import { postTweet } from './action';
+// import { postTweet } from './action';
 
 
 export default async function page() {
