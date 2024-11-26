@@ -12,7 +12,6 @@ export default async function page() {
   return (
     <>
 
-    <div>page</div>
     {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
     <Tweet/>
     </>
