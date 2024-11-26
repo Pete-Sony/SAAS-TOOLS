@@ -4,7 +4,7 @@
 import React from 'react';
 import { Card,Divider,FormControl,FormLabel,Input,Typography,Button, Textarea,  } from '@mui/joy';
 import {Box} from '@mui/joy';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';// import { postTweet } from './action';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';// import { postTweet } from './action';
 
 export default function Tweet() {
   const handleSubmit = async () => {
@@ -23,7 +23,7 @@ export default function Tweet() {
         minHeight:"25vh", 
       }}
      >
-      <Typography startDecorator={<InfoOutlinedIcon />} >Tweet New Post</Typography>
+      <Typography  >Tweet New Post</Typography>
       <Divider/>
     <FormControl>
       <Textarea size='lg' placeholder='Type Text Here' minRows={5} variant='soft'
