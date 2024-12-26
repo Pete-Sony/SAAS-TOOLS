@@ -1,10 +1,10 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+
 import YouTubeIframe from "./YouTubeIframe";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <div >
       <h1>So may we Start?</h1>
       <YouTubeIframe/>
       {/* <main className={styles.main}>
