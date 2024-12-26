@@ -14,7 +14,7 @@ export default function Page() {
         >
         <Typography>Open AI</Typography>
             <Button
-            onClick={generateHaiku}
+            // onClick={generateHaiku}
             >Generate Haiku
             </Button>
         </Card>
