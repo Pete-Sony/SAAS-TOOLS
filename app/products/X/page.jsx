@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Tweet from './Tweet';
+import Tweet from './_components/Tweet';
 
 
 
