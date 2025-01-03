@@ -13,13 +13,13 @@ export default function Tweet() {
   };
 
   return (
-    <div style={{color:"red", display:'flex', justifyContent:'center',alignItems:'center',height:'100vh'}}>
+    <div style={{ display:'flex', justifyContent:'center',alignItems:'center',height:'100dvh'}}>
     <Card
      variant='outlined'
       sx={{
           maxHeight:"max-content",
           maxWidth:"max-content",
-          minWidth: "25vw",
+          minWidth: "25dvw",
           minHeight:"25vh", 
         }}
      >

@@ -1,21 +1,5 @@
-
 import React from 'react'
-import Tweet from './_components/Tweet';
-
-
-
-
-
-export default async function page() {
-
-  return (
-    <>
-
-    {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
-    <Tweet/>
-    </>
-  )
+import { redirect } from 'next/navigation'
+export default function page() {
+  redirect('/products/X/tweet')
 }
-
-    
- 

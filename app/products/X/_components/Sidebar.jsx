@@ -32,7 +32,7 @@ export default function Sidebar({ params, orgs }) {
   return (
     <Sheet className="Sidebar"
       sx={{ position: "sticky", height: "100dvh", width: "15dvw", top: 0, flexShrink: 0, display: "flex", flexDirection: "column", borderRight: "1px solid", borderColor: "divider"}}>
-      <Typography sx={{ marginX: 1, marginY: 0.5 }} level="h4">Products</Typography>
+      <Typography sx={{ marginX: 1, marginY: 0.5 }} level="h4">X-API</Typography>
       {/* <Select size="sm" placeholder="Loading..." sx={{ marginX: 1, marginY: 0.5 }} defaultValue={o_id}>
         {orgs.map((org) => ( <Option component={Link} href={`/orgs/${org.id}`} key={org.id} value={org.id}> {org.name}</Option>))}
         <CreateOrgModal />
@@ -41,7 +41,8 @@ export default function Sidebar({ params, orgs }) {
       <Box sx={{ minHeight: 0, overflow: "hidden auto",flexGrow: 1, display: "flex", flexDirection: "column", [`& .${listItemButtonClasses.root}`]: { gap: 2 } }}>
         <List size="sm" sx={{ gap: 0.5, paddingX: 1, "--ListItem-radius": "5px"}}>
           <ListDivider />
-          <ListItem><ListItemButton component={Link} href={`/products/X`} selected={checkCurrentTab('X')}><PaidTwoToneIcon /><ListItemContent><Typography level="title-sm">X-API</Typography></ListItemContent></ListItemButton></ListItem>
+          <ListItem><ListItemButton component={Link} href={`/products/X/tweet`} selected={checkCurrentTab('tweet')}><PaidTwoToneIcon /><ListItemContent><Typography level="title-sm">Tweet</Typography></ListItemContent></ListItemButton></ListItem>
+          <ListItem><ListItemButton component={Link} href={`/products/X/schedule`} selected={checkCurrentTab('schedule')}><PaidTwoToneIcon /><ListItemContent><Typography level="title-sm">Schedule</Typography></ListItemContent></ListItemButton></ListItem>
           {/* <ListItem><ListItemButton component={Link} href={`/orgs/${o_id}/loans`} selected={checkCurrentTab('loans')}><AccountBalanceTwoToneIcon /><ListItemContent><Typography level="title-sm">Loans</Typography></ListItemContent></ListItemButton></ListItem>
           <ListItem><ListItemButton component={Link} href={`/orgs/${o_id}/lenders`} selected={checkCurrentTab('lenders')}><PersonIcon /><ListItemContent><Typography level="title-sm">Lenders</Typography></ListItemContent></ListItemButton></ListItem> */}
           {/* <ListItem><ListItemButton component={Link} href={`/orgs/${o_id}/reports?date_from=${dateFrom}&date_to=${dateTo}`} selected={checkCurrentTab('reports')}><AssessmentTwoToneIcon /><ListItemContent><Typography level="title-sm">Reports</Typography></ListItemContent></ListItemButton></ListItem> */}
