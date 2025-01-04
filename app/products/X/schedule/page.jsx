@@ -1,6 +1,7 @@
 import { Typography,Box } from '@mui/joy'
 import React from 'react'
 import ScheduleTweetsTable from './_components/ScheduleTweetsTable'
+import CreateTweet from './_components/CreateTweet'
 
 function Schedule() {
   return (
@@ -10,6 +11,9 @@ function Schedule() {
       }}>
      <Typography level='h3'>Schedule Tweets</Typography>
     </Box>
+
+
+    <CreateTweet/>
 
     <ScheduleTweetsTable/>
     {/* <div>Schedule</div> */}
