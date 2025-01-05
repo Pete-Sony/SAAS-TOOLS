@@ -2,18 +2,23 @@ import { CardContent, Grid, Typography } from '@mui/joy'
 import Link from 'next/link'
 import React from 'react'
 import Card from '@mui/joy/Card';
-import Chip from '@mui/joy';
+import Chip from '@mui/joy/Chip';
 
-export default function ProductCard({product, href='/',chips=[]}) {
+export default function ProductCard({product, href='/',chips=[], description}) {
  
 
   return (
    <>
-   <Grid>
-    <Card  href={href}>
-    <Typography>{product}</Typography>
-    <Typography></Typography>
-    {chips.map((chip)=>{<Chip>chip</Chip>})}
+   <Grid  xs={12} sm={6} md={4} lg={3}>
+    <Card variant='soft'  component={Link} href={href}
+    sx={{
+      textDecoration: "none", transition: "all 0.1s ease-in-out",
+      "&:hover": { textDecoration: "none", boxShadow: "lg", backgroundColor: "background.level2", transform: "translateY(-2px)" },
+    }}
+    >
+    <Typography level="title-lg" sx={{color:"inherit"}} >{product}</Typography>
+    <Typography level='body-md'>Description</Typography>
+    {chips.map((chip,index)=><Chip color='success' key={index}>{chip}</Chip>)}
     </Card>
    </Grid>
    </>
