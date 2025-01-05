@@ -1,5 +1,7 @@
+'use client'
 import React from 'react'
 import { Box, Tabs ,Tab, TabList, TabPanel} from '@mui/joy'
+import  { tabClasses } from '@mui/joy/Tab';
 
 
 const Navbar = () => {
@@ -11,6 +13,12 @@ const Navbar = () => {
           p: 0.5,
           gap: 0.5,
           borderRadius: 'xl',
+          bgcolor: 'background.level1',
+          [`& .${tabClasses.root}[aria-selected="true"]`]: {
+            boxShadow: 'sm',
+            bgcolor: 'background.surface',
+          },
+
         }}>
         <Tab disableIndicator value={0}>Products</Tab>
         <Tab disableIndicator value={1}>Blog</Tab>
