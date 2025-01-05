@@ -1,7 +1,8 @@
 import React from 'react'
+import ProductCard from './_components/ProductCard'
 
 export default function page() {
   return (
-    <div>Products Page</div>
+    <ProductCard href="joel" product="mom"/>
   )
 }
