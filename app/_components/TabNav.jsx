@@ -1,6 +1,9 @@
 import React from 'react'
 import { Box, Tabs ,Tab, TabList, TabPanel} from '@mui/joy'
 import  { tabClasses } from '@mui/joy/Tab';
+
+import Link from './Link';
+
 export default function TabNav() {
   return (
   
@@ -19,9 +22,15 @@ export default function TabNav() {
               },
     
             }}>
+                <Link href='/products'>
             <Tab disableIndicator value={0}>Products</Tab>
-            <Tab disableIndicator value={1}>Blog</Tab>
+                </Link>
+            <Link href="/blog" >
+                <Tab disableIndicator value={1}>Blog</Tab>
+             </Link>
+             <Link href="/pricing" >
             <Tab disableIndicator value={2}>Pricing</Tab>
+            </Link>
           </TabList>
           {/* <TabPanel value={0}>Products content here</TabPanel>
           <TabPanel value={1}>Blog content here</TabPanel>
