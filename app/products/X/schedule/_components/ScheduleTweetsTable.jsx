@@ -2,9 +2,20 @@ import React from 'react'
 import { Table,Box, IconButton, Typography,Chip } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
 // import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/joy';
 
 
 export default function ScheduleTweetsTable() {
+
+
+const CreateTweet = () => {
+  return (
+    <div>ScheduleTweetsTable</div>
+  )
+}
+
+
+
   return (
 
 <Table size='md'variant='soft' borderAxis='yBetween'>
