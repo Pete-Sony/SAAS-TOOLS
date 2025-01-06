@@ -4,6 +4,7 @@
 import React from 'react';
 import { Card,Divider,FormControl,FormLabel,Input,Typography,Button, Textarea,  } from '@mui/joy';
 import {Box} from '@mui/joy';
+import postTweet from '../../action';
 // import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';// import { postTweet } from './action';
 
 export default function Tweet() {
@@ -11,6 +12,12 @@ export default function Tweet() {
     // const result = await postTweet("hello Sir");
     // console.log(result);
   };
+
+  const handleClick = async () => {
+    alert('Tweeted');
+    const tweet = "Second tweet API"
+    postTweet(tweet);
+  }
 
   return (
     <div style={{ display:'flex', justifyContent:'center',alignItems:'center',height:'100dvh'}}>
@@ -40,7 +47,7 @@ export default function Tweet() {
                     flex: 'auto',
                     pt: '5px',
                 }}>
-                   <Button sx={{ ml: 'auto' }}>Tweet</Button>
+                   <Button sx={{ ml: 'auto' }} onClick={handleClick}>Tweet</Button>
                 </Box>
             }   
             />
