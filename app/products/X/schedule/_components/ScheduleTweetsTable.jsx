@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table,Box, IconButton, Typography,Chip } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default function ScheduleTweetsTable() {
@@ -26,7 +26,8 @@ export default function ScheduleTweetsTable() {
       <td>2024-01-04 5:40:35</td>
       <td> <Chip  color="warning" variant="soft">Pending</Chip></td>
       <td><IconButton size='small'><EditIcon/></IconButton>
-      <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton></td>
+      {/* <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton> */}
+      </td>
     </tr>
     <tr>
       <td><Box sx={{display:'flex',justifyContent:'space-between'}}>
@@ -35,7 +36,8 @@ export default function ScheduleTweetsTable() {
       <td>2024-01-04 5:40:35</td>
       <td> <Chip  color="warning" variant="soft">Pending</Chip></td>
       <td><IconButton size='small'><EditIcon/></IconButton>
-      <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton></td>
+      {/* <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton> */}
+      </td>
     </tr>
     <tr>
       <td><Box sx={{display:'flex',justifyContent:'space-between'}}>
@@ -44,14 +46,12 @@ export default function ScheduleTweetsTable() {
       <td>2024-01-04 5:40:35</td>
       <td> <Chip  color="warning" variant="soft">Pending</Chip></td>
       <td><IconButton size='small'><EditIcon/></IconButton>
-      <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton></td>
+      {/* <IconButton size='small' variant="plain" sx={{ '&:hover': { color: 'red' }, color: "grey" }}><DeleteIcon/></IconButton> */}
+      </td>
     </tr>
     
   
     
-
-    
-
   </tbody>
 
 </Table>
