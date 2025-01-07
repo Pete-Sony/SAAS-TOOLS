@@ -1,24 +1,61 @@
 import React from 'react'
 import { Table,Box, IconButton, Typography,Chip } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
+import Checkbox from '@mui/joy/Checkbox';
+
 // import DeleteIcon from '@mui/icons-material/Delete';
 import Button from '@mui/joy';
+import { Add } from '@mui/icons-material';
 
 
 export default function ScheduleTweetsTable() {
 
 
-const CreateTweet = () => {
-  return (
-    <div>ScheduleTweetsTable</div>
-  )
-}
+
+// Complete this sorting Header. Consider the pending and success status too
+// function labeDisplayedRows({from, to, count}){
+//   return `${from}-${to} of ${count}`
+// }
+
+// function descendingComparator({a,b,orderBy}){
+
+//   if(b[orderBy]<a[orderBy]){
+//      return -1
+//   }
+//   if(b[orderBy]>a[orderBy]){
+//   return 1
+//   } 
+//   return 0
+// }
+// function getcomparator(order,orderBy){
+//   return order =='desc' ? (a,b) => descendingComparator(a,b, orderBy)
+//    : (a, b) => - descendingComparator(a,b,orderby)
+
+// }
+
+// function TableHead(props){
+//   const { onSelectAllClick,numSelected, rowCount } = props
+
+//   return (
+//     <thead>
+//       <tr>
+//         <th>
+//           <Checkbox
+//            indeterminate={numSelected > 0 && numSelected < rowCount}
+//            checked={rowCount > 0 && numSelected === rowCount}
+//            onChange={onSelectAllClick}
+//           />
+//         </th>
+//       </tr>
+//     </thead>
+//   )
+// }
 
 
 
   return (
 
-<Table size='md'variant='soft' borderAxis='yBetween'>
+<Table size='md'variant='soft' borderAxis='bothBetween' hoverRow>
   <thead>
     <tr>
 
