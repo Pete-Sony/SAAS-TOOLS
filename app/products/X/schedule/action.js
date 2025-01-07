@@ -11,14 +11,15 @@ export async function createTweet(text,scheduledTime){
 }
 
 export async function getTweets(){
-    const [data,error] = await supabase.from('scheduled_tweets')
+    const {data,error} = await supabase.from('scheduled_tweets')
     .select('*')
     if (error) throw error;
+    // console.log("Fetching Tweets"+ data)
     return data
 }
 
-export async function deleteTweeT(id){
-    const [data,error] = await supabase.from('scheduled_tweets')
+export async function deleteTweet(id){
+    const {data,error} = await supabase.from('scheduled_tweets')
     .delete()
     .eq('id',id)
 
