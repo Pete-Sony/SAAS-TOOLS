@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Table,Box, IconButton, Typography,Chip } from '@mui/joy'
+import { Table, Box, Select, IconButton, Typography,Chip, FormControl, FormLabel } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/joy/Checkbox';
 import { getTweets, deleteTweet } from '../action';
@@ -12,6 +12,7 @@ import { Add } from '@mui/icons-material';
 
 export default function ScheduleTweetsTable() {
  const [tweets,setTweets ] = React.useState([])
+ const [page,setPage] = React.useState(0)
 
   React.useEffect(()=>{
     const fetchTweets = async() => {
@@ -28,9 +29,9 @@ export default function ScheduleTweetsTable() {
   }
 
 // Complete this sorting Header. Consider the pending and success status too
-// function labeDisplayedRows({from, to, count}){
-//   return `${from}-${to} of ${count}`
-// }
+function labeDisplayedRows({from, to, count}){
+  return `${from}-${to} of ${count}`
+}
 
 // function descendingComparator({a,b,orderBy}){
 
@@ -70,7 +71,9 @@ export default function ScheduleTweetsTable() {
 
   return (
 
-<Table size='md'variant='soft' borderAxis='bothBetween' hoverRow>
+<Table size='md'variant='soft' borderAxis='bothBetween' hoverRow stickyFooter stickyHeader
+
+>
   <thead>
     <tr>
       <th>Tweets</th>
@@ -97,6 +100,38 @@ export default function ScheduleTweetsTable() {
       </tr>
      ))}  
   </tbody>
+  <tfoot>
+    <tr>
+      <td colSpan={4}>
+        <Box sx={{
+                display:'flex',
+                alignItems:'center',
+                gap: 2,
+                justifyContent:'flex-end'
+        }}
+        >
+          <FormControl 
+          orientation='horizontal'
+          >
+            <FormLabel>Rows per page:</FormLabel>
+            <Select/>
+          </FormControl>
+          <Typography>{labeDisplayedRows({
+            from: 1,
+            to:30,
+            count:50
+          })}
+          </Typography>
+          <Box sx={{display:'flex', gap:1 }}>
+            
+          </Box>
+
+
+        </Box>
+      </td>
+    </tr>
+  </tfoot>
+
 </Table>
   )
 }
