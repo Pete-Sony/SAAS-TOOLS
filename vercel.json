@@ -1,0 +1,8 @@
+{
+    "crons": [
+      {
+        "path": "/products/X/schedule/cron",
+        "schedule": "* * * * *"
+      }
+    ]
+  }
