@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
-import TabNav from '../_components/TabNav'
+import TabNavigationHeader from '../_components/TabNavigationHeader'
 
 
 export default function page() {
   return (
-  <><TabNav/></>
+  <><TabNavigationHeader/></>
   )
 }

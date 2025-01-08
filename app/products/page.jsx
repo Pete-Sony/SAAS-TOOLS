@@ -2,7 +2,7 @@
 import React from 'react'
 import ProductCard from './_components/ProductCard'
 import { Grid,Box } from '@mui/joy'
-import TabNav from '../_components/TabNav'
+import TabNavigationHeader from '../_components/TabNavigationHeader'
 import { FindReplaceOutlined } from '@mui/icons-material'
 
 export default function page() {
@@ -26,7 +26,7 @@ const products= [
 
   return (
     <>
-      <TabNav/>
+      <TabNavigationHeader/>
       <Box 
         sx={{  maxWidth: {xs: "100%",sm: "600px",md: "900px",lg: "1200px"} ,
                 margin:"0 auto", pt:"50px"}}>
