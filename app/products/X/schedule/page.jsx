@@ -12,8 +12,10 @@ function Schedule() {
      <Typography level='h3'>Schedule Tweets</Typography>
     </Box>
 
+  <Box sx={{display:"flex", justifyContent:"flex-end",mb:1 }}>
 
     <CreateTweet/>
+  </Box>
 
     <ScheduleTweetsTable/>
     {/* <div>Schedule</div> */}
