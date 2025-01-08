@@ -19,7 +19,7 @@ export default function Sidebar({ params, orgs }) {
         <List size="sm" sx={{ gap: 0.5, paddingX: 1, "--ListItem-radius": "5px"}}>
           <ListDivider />
           {/* <ListItem><ListItemButton component={Link} href={`/products/X/tweet`} selected={checkCurrentTab('tweet')}><PaidTwoToneIcon /><ListItemContent><Typography level="title-sm">Tweet</Typography></ListItemContent></ListItemButton></ListItem> */}
-          <ListItem><ListItemButton component={Link} href={`/products/X/schedule`} selected={checkCurrentTab('schedule')}><HistoryToggleOffIcon /><ListItemContent><Typography level="title-sm">Schedule</Typography></ListItemContent></ListItemButton></ListItem>
+          <ListItem><ListItemButton component={Link} href={`/products/X/scheduler`} selected={checkCurrentTab('schedule')}><HistoryToggleOffIcon /><ListItemContent><Typography level="title-sm">Scheduler</Typography></ListItemContent></ListItemButton></ListItem>
         </List>
       </Box>
     </Sheet>
