@@ -1,20 +1,27 @@
 // 'use server'
+
 // import OpenAI from "openai";
 // const openai = new OpenAI({
-//     // apiKey: process.env.OPENAI_API_KEY 
+//     apiKey: process.env.OPENAI_API_KEY,
 // });
 
-// export async function generateHaiku(){
+// export async function generateTweeets(){
 //     console.log('Running Prompt')
 
 //     try{
 //         const completion = await openai.chat.completions.create({
 //             model: "gpt-4o-mini",
 //             messages: [
-//                 { role: "system", content: "You are a helpful assistant." },
+//                 {   role: "system", 
+//                     content: ```
+//                     You are an assistant that helps in generating concise and interesting tweets,
+//                     given a prompt. You generate tweets based on the prompt in the following format:
+//                     "Tweet: <Tweet Content>"
+//                     ``` 
+//                 },
 //                 {
 //                     role: "user",
-//                     content: "Write a haiku about recursion in programming.",
+//                     content: "Write interesting things about dogs.",
 //                 },
 //             ],
 //         });
@@ -27,8 +34,7 @@
 //         console.error('OpenAI API Error:', error);
 //         return { 
 //           message: null, 
-//           error: 'Failed to generate haiku' 
+//           error: 'Failed to generate' 
 //         };
 //       }}
-
 // }
