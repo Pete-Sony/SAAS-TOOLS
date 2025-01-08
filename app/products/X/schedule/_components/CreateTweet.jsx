@@ -11,10 +11,21 @@ import Stack from '@mui/joy/Stack';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
+import {Input} from '@mui/joy';
 
 export default function CreateTweet() {
+  const now = new Date();
   const [open, setOpen] = React.useState(false)
   const [text, setText] = React.useState('')
+  const [dateValue, setDateValue] = React.useState(now.toISOString().split('T')[0]);
+  const [timeValue,setTimeValue] = React.useState(
+    now.toLocaleTimeString('en-US', {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  )
+  const [error,setError] = React.useState('')
 
  
 
@@ -40,7 +51,7 @@ export default function CreateTweet() {
     <Modal open={open} onClose={()=>setOpen(false)}>
       <ModalDialog>
         <DialogTitle>Schedule Tweet</DialogTitle>
-        <DialogContent>Something</DialogContent>
+        <DialogContent>Add in the details of your Tweet</DialogContent>
           <form onSubmit={handleSubmit}>
             <Stack spacing={2}>
               <FormControl>
@@ -58,7 +69,16 @@ export default function CreateTweet() {
                 />
               </FormControl>
               <FormControl>
-                <FormLabel>Scheduled Time: Placeholder</FormLabel>
+                <FormLabel>Schedule Date</FormLabel>
+                <Input type="date"
+                  value={dateValue}
+                />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Scheduled Time</FormLabel>
+                <Input type="time" 
+                  value={timeValue}
+                />
               </FormControl>
               <Button type="submit">Submit</Button>
             </Stack>
