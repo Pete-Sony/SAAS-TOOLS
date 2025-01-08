@@ -13,7 +13,7 @@ export default function Tweet() {
     // console.log(result);
   };
 
-  const handleClick = async () => {
+  const handleClick = async () => {    
     alert('Tweeted');
     const tweet = "Second tweet API"
     postTweet(tweet);
