@@ -31,17 +31,48 @@ export default function CreateTweet() {
 
   const handleClick =()=>{
     setOpen(true)
-
   }
+
   const handleSubmit = async(e)=>{
     e.preventDefault()
-    if(text && true){
-     const response= await createTweet(text,'2023-01-01 00:00:00+00')
-     console.log(response)
-     setText('')
-    //  setScheduledTime('');
+    if(text && dateValue && timeValue){
+      try{
+      // console.log('reached here', dateValue, timeValue)
+
+      const [ hours, minutes ] = timeValue.split(':')
+
+    
+      const dateTime = new Date(dateValue);
+      dateTime.setHours(parseInt(hours))
+      dateTime.setMinutes(parseInt(minutes))
+      dateTime.setSeconds(0)
+
+      // console.log('DateTime'+dateTime)
+
+     if (isNaN(dateTime.getTime())){
+       setError('Invalid date/time combination')
+       return;
+     }
+     const pgTimestampz = dateTime.toISOString()
+     const response= await createTweet(text,pgTimestampz)
+    //  console.log("Create Tweet Response",response)
+     setError('')
+
+    } catch (err) {
+       setError('Invalid date/time format')
+   } 
+   setText('')
     }
     setOpen(false)
+  }
+
+  const handleChange =(type,value)=>{
+    if(type === 'date') {
+      setDateValue(value)
+    }
+    else {
+      setTimeValue(value)
+    }
 
   }
 
@@ -72,12 +103,15 @@ export default function CreateTweet() {
                 <FormLabel>Schedule Date</FormLabel>
                 <Input type="date"
                   value={dateValue}
+                  onChange={(e) => handleChange('date', e.target.value)}
                 />
               </FormControl>
               <FormControl>
                 <FormLabel>Scheduled Time</FormLabel>
                 <Input type="time" 
                   value={timeValue}
+                  onChange={(e) => handleChange('time', e.target.value)}
+
                 />
               </FormControl>
               <Button type="submit">Submit</Button>
