@@ -3,6 +3,9 @@ import React from 'react'
 import { Table, Box, Select, IconButton, Typography,Chip, FormControl, FormLabel } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/joy/Checkbox';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 import { getTweets, deleteTweet } from '../action';
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -32,6 +35,7 @@ export default function ScheduleTweetsTable() {
 function labeDisplayedRows({from, to, count}){
   return `${from}-${to} of ${count}`
 }
+
 
 // function descendingComparator({a,b,orderBy}){
 
@@ -66,6 +70,7 @@ function labeDisplayedRows({from, to, count}){
 //     </thead>
 //   )
 // }
+
 
 
 
@@ -123,10 +128,18 @@ function labeDisplayedRows({from, to, count}){
           })}
           </Typography>
           <Box sx={{display:'flex', gap:1 }}>
-            
+            <IconButton
+             onClick={(page) => {setPage(page-1)}} 
+             disabled={page==1}>
+              <KeyboardArrowLeftIcon/>
+            </IconButton>
+            <IconButton
+            onClick={(page) => {setPage(page+1)}} 
+            disabled={page==1}
+              >
+              <KeyboardArrowRightIcon/>
+            </IconButton>
           </Box>
-
-
         </Box>
       </td>
     </tr>

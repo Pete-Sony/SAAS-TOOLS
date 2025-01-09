@@ -16,7 +16,7 @@ const products= [
   },
   {
     name:'X Bot',
-    href:"/products/X/tweet",
+    href:"/products/X/scheduler",
     description:'Dashboard for managing and Automating Tweets. Users can create, queue and schedule a large number of Tweets',
     chips:['Creator Tool','X-API','Automation',]
   },
