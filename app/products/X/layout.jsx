@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from './_components/Sidebar'
 import { Box } from '@mui/joy'
+import TopProgressBar from '@/app/_components/TopProgressBar'
 
 export default function ProductsLayoutPage({children}) {
   return (

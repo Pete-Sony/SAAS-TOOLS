@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import TopProgressBar from "./_components/TopProgressBar";
 
 export const metadata = {
   title: "Joel Peter Sony",
@@ -8,6 +8,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <TopProgressBar/>
         {children}
       </body>
     </html>

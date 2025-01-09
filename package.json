@@ -18,6 +18,8 @@
     "crypto": "^1.0.1",
     "googleapis": "^144.0.0",
     "next": "15.0.3",
+    "next-nprogress-bar": "^2.4.3",
+    "nextjs-progressbar": "^0.0.16",
     "oauth-1.0a": "^2.2.6",
     "openai": "^4.77.3",
     "react": "^18.2.0",
