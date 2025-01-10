@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Table, Box, Select, IconButton, Typography,Chip, FormControl, FormLabel } from '@mui/joy'
+import { Table, Box, Select, IconButton, Typography,Chip, FormControl, FormLabel, Option } from '@mui/joy'
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/joy/Checkbox';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -14,21 +14,22 @@ import { Add } from '@mui/icons-material';
 
 
 export default function ScheduleTweetsTable() {
- const [tweets,setTweets ] = React.useState([])
+ const [rows,setRows ] = React.useState([])
  const [page,setPage] = React.useState(0)
+ const [rowsPerPage,setRowsPerPage]= React.useState(5)
 
   React.useEffect(()=>{
     const fetchTweets = async() => {
       const data = await getTweets()
       console.log(data)
-      setTweets(data)
+      setRows(data)
     };
     fetchTweets()
   },[])
 
   const handleDelete = async(id) => {
     await deleteTweet(id)
-    setTweets(tweets.filter((tweet) => tweet.id!==id))
+    setRows(rows.filter((tweet) => tweet.id!==id))
   }
 
 // Complete this sorting Header. Consider the pending and success status too
@@ -36,6 +37,12 @@ function labeDisplayedRows({from, to, count}){
   return `${from}-${to} of ${count}`
 }
 
+function handleChangeRowsPerPage(event, newValue){
+  console.log("new Value"+ newValue)
+  setRowsPerPage(parseInt(newValue.toString(),10));
+  setPage(0)
+}
+ 
 
 // function descendingComparator({a,b,orderBy}){
 
@@ -75,7 +82,6 @@ function labeDisplayedRows({from, to, count}){
 
 
   return (
-
 <Table size='md'variant='soft' borderAxis='bothBetween' hoverRow stickyFooter stickyHeader
 
 >
@@ -88,7 +94,7 @@ function labeDisplayedRows({from, to, count}){
     </tr>
   </thead>
   <tbody>
-    {tweets.map((tweet)=>(
+    {rows.map((tweet)=>(
       <tr key={tweet.id}>
         <td><Box sx={{display:'flex',justifyContent:'space-between'}}>
           <Typography>{tweet.tweet_text}</Typography>
@@ -119,10 +125,14 @@ function labeDisplayedRows({from, to, count}){
           orientation='horizontal'
           >
             <FormLabel>Rows per page:</FormLabel>
-            <Select/>
+            <Select onChange={handleChangeRowsPerPage} value={rowsPerPage}>
+              <Option value={5}>5</Option>
+              <Option value={10}>10</Option>
+              <Option value={25}>25</Option>
+            </Select>
           </FormControl>
           <Typography>{labeDisplayedRows({
-            from: 1,
+            from: rows.length === 0 ? 0 : page,
             to:30,
             count:50
           })}
@@ -130,12 +140,12 @@ function labeDisplayedRows({from, to, count}){
           <Box sx={{display:'flex', gap:1 }}>
             <IconButton
              onClick={(page) => {setPage(page-1)}} 
-             disabled={page==1}>
+             disabled={page === 0}>
               <KeyboardArrowLeftIcon/>
             </IconButton>
             <IconButton
             onClick={(page) => {setPage(page+1)}} 
-            disabled={page==1}
+            disabled={rows.length !== -1 ? page >= Math.ceil(rows.length/ rowsPerPage)- 1: false}
               >
               <KeyboardArrowRightIcon/>
             </IconButton>
