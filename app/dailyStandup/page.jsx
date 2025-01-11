@@ -22,6 +22,7 @@ export default function page() {
           minHeight:"25vh", 
         }}
      >
+      
       <Typography  >Daily Standup</Typography>
       <Divider/>
         <FormControl>
