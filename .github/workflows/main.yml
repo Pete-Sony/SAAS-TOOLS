@@ -1,37 +1,28 @@
-name: Deploy Next.js App
+name: Deploy to Hetzner Server
 
 on:
   push:
     branches:
-      - main  # or your default branch name
+      - main  # Trigger deployment on push to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          node-version: '22'  # or your preferred Node.js version
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Next.js app
-        run: npm run build
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to Hetzner server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          script: |
-            cd SAAS-TOOL
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_deploy_key ubuntu@188.245.62.183 << 'EOF'
+            cd SAAS_TOOLS
             git pull origin main
-            npm ci
-            npm run build
-            pm2 restart nextjs-app  
+            sudo systemctl restart nginx
+          EOF
+
