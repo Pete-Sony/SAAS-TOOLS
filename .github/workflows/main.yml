@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      
+
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
@@ -20,9 +20,8 @@ jobs:
 
       - name: Deploy to Hetzner server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_deploy_key ubuntu@188.245.62.183 << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@188.245.62.183 << 'EOF'
             cd SAAS_TOOLS
             git pull origin main
             sudo systemctl restart nginx
           EOF
-
