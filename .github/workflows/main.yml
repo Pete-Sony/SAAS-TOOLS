@@ -10,29 +10,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the repository
     - name: Checkout Code
       uses: actions/checkout@v3
 
-    # Step 2: Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
 
-    # Step 3: Install dependencies
     - name: Install Dependencies
       run: npm install
 
-    # Step 4: Build the project
     - name: Build Project
       run: npm run build
 
-    # Step 5: Archive the build artifacts
     - name: Archive Build
       run: tar -czf build.tar.gz .next public package.json package-lock.json
 
-    # Step 6: Upload the build artifact for the deploy job
     - name: Upload Build Artifact
       uses: actions/upload-artifact@v3
       with:
@@ -44,20 +38,24 @@ jobs:
     needs: build
 
     steps:
-    # Step 1: Download the build artifact
     - name: Download Build Artifact
       uses: actions/download-artifact@v3
       with:
         name: build
 
-    # Step 2: Copy the build artifact to the Hetzner server
+    - name: Configure SSH Key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
     - name: Copy Build to Server
       run: |
-        scp -i ~/.ssh/Hetzner -o StrictHostKeyChecking=no build.tar.gz  root@188.245.62.183::/SAAS-TOOLS/
-    # Step 3: Deploy the application on the server
+        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no build.tar.gz root@188.245.62.183:/SAAS-TOOLS/
+
     - name: Deploy Application on Server
       run: |
-        ssh -i ~/.ssh/Hetzner -o StrictHostKeyChecking=no  root@188.245.62.183 << 'EOF'
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@188.245.62.183 << 'EOF'
           cd /SAAS-TOOLS/
           tar -xzf build.tar.gz
           npm ci --production
