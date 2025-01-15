@@ -51,7 +51,7 @@ jobs:
 
     - name: Copy Build to Server
       run: |
-        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no build.tar.gz root@188.245.62.183:/APPS?SAAS-TOOLS/build.tar.gz
+        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no build.tar.gz root@188.245.62.183:/APPS/SAAS-TOOLS/build.tar.gz
 
     - name: Deploy Application on Server
       run: |
