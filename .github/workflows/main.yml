@@ -62,3 +62,5 @@ jobs:
           pm2 stop next-app || true
           pm2 start npm --name "next-app" -- start
         EOF
+
+        
