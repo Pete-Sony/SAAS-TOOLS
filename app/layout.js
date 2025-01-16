@@ -1,5 +1,5 @@
 import TopProgressBar from "./_components/TopProgressBar";
-
+import './globals.css'
 export const metadata = {
   title: "Joel Peter Sony",
   description: "Experimental",
