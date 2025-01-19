@@ -7,8 +7,6 @@ If we do fail, That's great too. Readers now will know what not to do.
  To build a reportare of essays similar to Paul Graham
 
 
-
-
  ## The Idealist are the Real Realist: An argument against Rationality.
 
  The persistent problem found in many individuals, problem Posed by Rithin.

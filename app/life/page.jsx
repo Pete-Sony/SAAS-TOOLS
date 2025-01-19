@@ -13,8 +13,6 @@ export default function ComponentName() {
         const data = await calculateAge(dob); // Call the server action
         setResult(data.message);
       };
-
-
   return (
     <>
  <div style={{ padding: '2rem', textAlign: 'center' }}>
