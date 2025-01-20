@@ -8,7 +8,7 @@ export default function Page() {
 
   const handleClick = async () => {
     alert("Generating Tweets")
-    const response = await generateTweets("AI Agents taking over the world")
+    const response = await generateTweets("NFT")
     setTweets(response.tweets)
   }
 

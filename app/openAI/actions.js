@@ -9,7 +9,7 @@ const Tweet = z.object({
   tweet: z.string(),
 });
 
-const CalendarEvent = z.object({
+const Tweets = z.object({
   tweets: z.array(Tweet),
 });
 
@@ -28,7 +28,7 @@ export async function generateTweets(text) {
       },
       { role: "user", content: text },
     ],
-    response_format: zodResponseFormat(CalendarEvent, "tweets"),
+    response_format: zodResponseFormat(Tweets, "tweets"),
   });
 
   return completion.choices[0].message.parsed;
