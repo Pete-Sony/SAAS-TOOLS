@@ -61,7 +61,7 @@ export default function page() {
       Simple, transparent pricing
     </h1>
     <p className='txt-xl text-muted-foreground'>
-      Choose the perfect plan for your needs. Always know what you'll pay. 
+      Choose the perfect plan for your needs. Always know what you&apos;ll pay. 
     </p>
    </div>
    <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
