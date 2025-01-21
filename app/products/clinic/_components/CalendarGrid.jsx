@@ -11,17 +11,24 @@ export default function CalendarGrid() {
     <Box 
         sx={{  maxWidth: {xs: "100%",sm: "600px",md: "900px",lg: "1200px"} ,
                 margin:"0 auto", pt:"50px"}}>
+                    <Typography variant="h1" sx={{ mb: 2 }}>
+                      January 2025
+                    </Typography>
+          
       <Grid container>
-        <Grid >
-            {days.map((day) =>{
-
+      {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+    <Grid  sm={12/7} lg={12/7}>
+          <Box key={day} sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+            {day}
+          </Box>
+          </Grid>
+        ))}
+            {days.map((day) =>(
             <DateCard day={day} key={day}/>
-            })}
-            <Typography>JOel</Typography>
-        </Grid>
-      </Grid>
-      </Box>
- 
+           ))}
+        
+              </Grid>
+              </Box>
     </>
   );
 }
