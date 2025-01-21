@@ -20,6 +20,12 @@ const products= [
     description:'Dashboard for managing and Automating Tweets. Users can create, queue and schedule a large number of Tweets',
     chips:['Creator Tool','X-API','Automation',]
   },
+  {
+    name:'Clinic',
+    href:"/products/clinic",
+    description:'Scheduling Software for clinics',
+    chips:['Scheduling','Clinic',]
+  },
 ]
 
 
