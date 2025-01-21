@@ -29,43 +29,19 @@ jobs:
     - name: Build Project
       run: npm run build
 
-    # - name: Archive Build
-    #   run: tar -czf build.tar.gz .next public package.json package-lock.json
-
-    # - name: Upload Build Artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: build
-    #     path: build.tar.gz
-
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: build
-
-  #   steps:
-  #   - name: Download Build Artifact
-  #     uses: actions/download-artifact@v3
-  #     with:
-  #       name: build
-
     - name: Configure SSH Key
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/HetznerDeploy
+        echo "${{ secrets.DEPLOY_PRIVATE_KEY }}" > ~/.ssh/HetznerDeploy
         chmod 600 ~/.ssh/HetznerDeploy
 
-    - name: Copy Build to Server
+    - name: Deploy to Hetzner
       run: |
-        scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no build.tar.gz root@188.245.62.183:/APPS/SAAS-TOOLS/build.tar.gz
-
-    - name: Deploy Application on Hetzner
-      run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@188.245.62.183 << 'EOF'
-          cd /APPS/SAAS-TOOLS/
-          tar -xzf build.tar.gz
-          npm ci --production
-          pm2 stop next-app || true
-          pm2 start npm --name "next-app" -- start
-        EOF
-
+        rsync -avz -e ssh -i HetznerDeploy --delete .next/ deploy@188.245.62.183:/Adrovel/.next
+        ssh -i HetznerDeploy deploy@188.245.62.183 '
+        cd ~/Adrovel &&
+        npm ci --production &&
+        pm2 restart Adrovel ||
+        pm2 start "npm start" --name Adrovel --exp-backoff-restart-delay=100
+        '
         
