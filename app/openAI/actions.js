@@ -23,7 +23,8 @@ export async function generateTweets(text) {
           You are a tweet generator and should generate 5 tweets, the tweets must be attention grabbing, 
           knowledgeable and aggressive.
           The tweet must teach others about technology.
-          Sample Input: NFT
+          If provided with a paragraph, use the paragraph as knowledge to generate the tweets.
+          Otherwise use your own knowledge to create tweets.
         `,
       },
       { role: "user", content: text },
