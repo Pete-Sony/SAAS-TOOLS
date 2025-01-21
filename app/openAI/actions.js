@@ -1,40 +1,35 @@
-// 'use server'
+"use server";
+import OpenAI from "openai";
+import { zodResponseFormat } from "openai/helpers/zod";
+import { z } from "zod";
 
-// import OpenAI from "openai";
-// const openai = new OpenAI({
-//     apiKey: process.env.OPENAI_API_KEY,
-// });
+const openai = new OpenAI();
 
-// export async function generateTweeets(){
-//     console.log('Running Prompt')
+const Tweet = z.object({
+  tweet: z.string(),
+});
 
-//     try{
-//         const completion = await openai.chat.completions.create({
-//             model: "gpt-4o-mini",
-//             messages: [
-//                 {   role: "system", 
-//                     content: ```
-//                     You are an assistant that helps in generating concise and interesting tweets,
-//                     given a prompt. You generate tweets based on the prompt in the following format:
-//                     "Tweet: <Tweet Content>"
-//                     ``` 
-//                 },
-//                 {
-//                     role: "user",
-//                     content: "Write interesting things about dogs.",
-//                 },
-//             ],
-//         });
+const Tweets = z.object({
+  tweets: z.array(Tweet),
+});
 
-//         return { 
-//             message: completion.choices[0].message.content,
-//             error: null 
-//           };
-//     }catch(error){{
-//         console.error('OpenAI API Error:', error);
-//         return { 
-//           message: null, 
-//           error: 'Failed to generate' 
-//         };
-//       }}
-// }
+export async function generateTweets(text) {
+  const completion = await openai.beta.chat.completions.parse({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: `
+          You are a tweet generator and should generate 5 tweets, the tweets must be attention grabbing, 
+          knowledgeable and aggressive.
+          The tweet must teach others about technology.
+          Sample Input: NFT
+        `,
+      },
+      { role: "user", content: text },
+    ],
+    response_format: zodResponseFormat(Tweets, "tweets"),
+  });
+
+  return completion.choices[0].message.parsed;
+}
