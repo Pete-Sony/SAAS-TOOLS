@@ -10,19 +10,46 @@ export default function CalendarGrid() {
 
   return (
       <>
-       <Box  sx={{ maxWidth:{ xs: "100%", sm: "600px", md: "900px", lg: "1200px"}, margin:"0 auto", pt:"50px"}}>
-         <Typography variant="h1" sx={{ mb: 2 }}> January 2025</Typography>
-        <Grid container>
+       <Box  sx={{ maxWidth:{ xs: "100%", sm: "600px", lg: "100%"}, margin:"0 auto", pt:0.2}}>
+         <Typography level="h3" sx={{ mb: 2 }}> January 2025</Typography>
+        <Grid container
+        
+        sx={{
+          '--Grid-borderWidth': '1px',
+          borderTop: "solid",
+          borderLeft: 'solid',
+          borderColor: 'divider',  
+        }}
+        >
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-         <Grid  key={day} sm={12/7} lg={12/7}>
+         <Grid  
+         sx={{ 
+          borderRight: 'solid',
+          borderBottom: 'solid',
+          borderColor: 'divider', 
+        }}
+         key={day} sm={12/7} lg={12/7}>
             <Box  sx={{ textAlign: 'center', fontWeight: 'bold' }}>{day} </Box>
           </Grid>
         ))}   
         {days.map((day) =>(
               // <DateCard day={day} key={day}/>
+
+              <Grid  key={day} sm={12/7} lg={12/7}
+               sx={{
+               
+                  borderRight: 'solid',
+                  borderBottom: 'solid',
+                  borderColor: 'divider',
+            
+               }}
+          
+              >
               <DateCard2  key={day} date={day}
               appointments={AppointmentData}
               />
+              {/* <pre>{day}</pre> */}
+              </Grid>
             ))}  
           </Grid>
        </Box>

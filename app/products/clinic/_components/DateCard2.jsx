@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Chip, Stack, Typography } from '@mui/joy';
+import { Card, Chip, Stack, Typography, Sheet } from '@mui/joy';
 import { format, isToday } from 'date-fns';
 /*
 type Appointment = {
@@ -28,7 +28,7 @@ export default function DateCard2({date,appointments=[]}) {
 
   return (
     <>
-      <Card
+      {/* <Card
       variant="outlined"
       sx={{
         height: '160px',
@@ -41,15 +41,19 @@ export default function DateCard2({date,appointments=[]}) {
           transition: 'border-color 0.3s ease',
         },
       }}
-    >
+    > */}
+    <Sheet sx={{minHeight: '115px'}} >
            <Typography
         level="body-sm"
+       
         // fontWeight={isCurrentDay ? 'bold' : 'normal'}
-        sx={{ mb: 1 }}
+        fontWeight={'bold'}
+        sx={{ mb: 1, textAlign:"center" }}
       >
-        {format(date, 'd')}
+        {/* {format(date, 'd')} */}
+        {date}
       </Typography>
-      <Stack spacing={0.5} sx={{ overflow: 'hidden' }}>
+      <Stack spacing={0.5} sx={{ overflow: 'hidden', mb:0.5 }}>
       {visibleAppointments.map((apt) => (
           <Chip
             key={apt.id}
@@ -88,7 +92,8 @@ export default function DateCard2({date,appointments=[]}) {
           </Chip>
         )}
         </Stack>
-        </Card>
+        </Sheet>
+        {/* </Card> */}
     </>
   );
 }
