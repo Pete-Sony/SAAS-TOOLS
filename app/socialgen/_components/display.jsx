@@ -31,7 +31,7 @@ export default function Display() {
     <div>
       <Card className="w-auto">
         <CardHeader>
-          <CardTitle>Generate Transcript</CardTitle>
+          <CardTitle>Generate Tweets</CardTitle>
           <CardDescription>Enter Your Youtube Url here</CardDescription>
         </CardHeader>
         <CardContent>

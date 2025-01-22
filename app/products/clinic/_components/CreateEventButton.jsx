@@ -1,10 +1,10 @@
-import React from 'react';
-import Button from '@mui/joy/Button';
-import Menu from '@mui/joy/Menu';
-import MenuItem from '@mui/joy/MenuItem';
-import Add from '@mui/icons-material/Add';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import { CssVarsProvider } from '@mui/joy/styles';
+import React from "react";
+import Button from "@mui/joy/Button";
+import Menu from "@mui/joy/Menu";
+import MenuItem from "@mui/joy/MenuItem";
+import Add from "@mui/icons-material/Add";
+import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import { CssVarsProvider } from "@mui/joy/styles";
 
 const CreateEventButton = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,14 +27,14 @@ const CreateEventButton = () => {
         endDecorator={<KeyboardArrowDown />}
         onClick={handleClick}
         sx={{
-          bgcolor: 'rgb(26, 115, 232)',
-          borderRadius: '100px',
+          bgcolor: "rgb(26, 115, 232)",
+          borderRadius: "100px",
           px: 2,
           py: 1,
-          '&:hover': {
-            bgcolor: 'rgb(66, 133, 244)',
+          "&:hover": {
+            bgcolor: "rgb(66, 133, 244)",
           },
-          gap: 0.5
+          gap: 0.5,
         }}
       >
         Create
