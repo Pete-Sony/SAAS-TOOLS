@@ -1,7 +1,7 @@
 "use server";
 import { revalidatePath } from 'next/cache'
 
-import { Appointment, initDB } from "./model";
+import { Appointment, initDB } from "./_data/model";
 
 await initDB()
 
