@@ -25,11 +25,14 @@ export async function createEvent(eventData) {
 }
 
 export async function getAppointments() {
-  console.log('point 3')
   try {
     const appointments = await Appointment.findAll();
-    console.log(appointments)
+    const plainAppointments = appointments.map((appointment) => appointment.toJSON())
+    console.log(plainAppointments)
+    return plainAppointments
   } catch (error) {
-    console.log("error")
+    console.log("Error Fetching Appointments", error)
+    return []
   }
+
 }

@@ -1,16 +1,6 @@
 import React from 'react';
 import { Card, Chip, Stack, Typography, Sheet } from '@mui/joy';
 import { format, isToday } from 'date-fns';
-/*
-type Appointment = {
-  id: number;
-  title: string;
-  date: string;
-  time: string;
-  duration: number;
-};
-*/
-
 
 
 export default function DateCard2({date,appointments=[]}) {
@@ -22,8 +12,18 @@ export default function DateCard2({date,appointments=[]}) {
  
 
   const formatTime = (time) => {
-    return format(new Date(`2024-01-01T${time}`), 'h:mm a');
+    try {
+      return format(new Date(`2024-01-01T${time}`), 'h:mm a');
+    } catch(error) {
+      return time
+    }
   };
+
+  const getDay = (date) => {
+    const day = new Date(date).getDate()
+    // console.log(date)
+    return day
+  }
 
 
   return (
@@ -51,7 +51,7 @@ export default function DateCard2({date,appointments=[]}) {
         sx={{ mb: 1, textAlign:"center" }}
       >
         {/* {format(date, 'd')} */}
-        {date}
+        {getDay(date)}
       </Typography>
       <Stack spacing={0.5} sx={{ overflow: 'hidden', mb:0.5 }}>
       {visibleAppointments.map((apt) => (
