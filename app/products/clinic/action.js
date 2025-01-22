@@ -1,11 +1,12 @@
 "use server";
+import { revalidatePath } from 'next/cache'
 
 import { Appointment, initDB } from "./model";
 
 await initDB()
 
 // Create a new event
-export async function createEvent(eventData) {
+export async function createAppointment(eventData) {
   const inputDate = eventData.get("date")
   const formattedDate = new Date(inputDate).toISOString().split('T')[0]
 
@@ -18,9 +19,12 @@ export async function createEvent(eventData) {
 
   try {
     const event = await Appointment.create(rawFormData);
-    console.log("success")
+    // console.log("success")
+    // revalidatePath('/products/clinic')
+    // console.log("Revalidating path: /products/clinic");
+
   } catch (error) {
-    console.log("error")
+    // console.log("error")
   }
 }
 
@@ -34,5 +38,4 @@ export async function getAppointments() {
     console.log("Error Fetching Appointments", error)
     return []
   }
-
 }

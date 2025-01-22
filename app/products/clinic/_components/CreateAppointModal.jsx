@@ -2,18 +2,19 @@ import React from "react";
 import Button from "@mui/joy/Button";
 import { Modal, ModalDialog, Stack, FormControl, FormLabel, Input, Textarea, Select, Option  } from "@mui/joy";
 import Add from "@mui/icons-material/Add";
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { addHours, format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { createEvent } from "../action";
+import { createAppointment } from "../action";
+import { useRouter } from 'next/navigation'
+
 
 
 export default function CreateAppointModal() {
   const [open,setOpen] = React.useState(false)
+  const router = useRouter()
 
   const handleClick = (event) => {
     setOpen(true)
@@ -24,9 +25,10 @@ export default function CreateAppointModal() {
     setOpen(false)
 
   };
-  const handleSubmit =(e) => {
-    createEvent(e)
+  const handleSubmit = async (e) => {
+    await createAppointment(e)
     setOpen(false)
+    // router.refresh()
 
   }
 
