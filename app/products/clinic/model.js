@@ -41,7 +41,9 @@ const Appointment = sequelize.define('Appointment', {
 
 export const initDB = async () => {
   try {
+    console.log("reached point 1")
     await sequelize.authenticate();
+    console.log("reached point 2")
     await Appointment.sync();
     console.log('Database connected and model synced');
   } catch (error) {
