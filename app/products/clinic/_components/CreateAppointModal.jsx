@@ -8,10 +8,10 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { addHours, format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
-const CreateEventButton = () => {
+export default function CreateAppointModal() {
   const [open,setOpen] = React.useState(false)
   const [date, newDate] = React.useState(new Date())
 
@@ -110,4 +110,4 @@ const CreateEventButton = () => {
   );
 };
 
-export default CreateEventButton;
+
