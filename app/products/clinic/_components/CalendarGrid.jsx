@@ -17,8 +17,8 @@ export default function CalendarGrid() {
           
       <Grid container>
       {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-    <Grid  sm={12/7} lg={12/7}>
-          <Box key={day} sx={{ textAlign: 'center', fontWeight: 'bold' }}>
+    <Grid  key={day} sm={12/7} lg={12/7}>
+          <Box  sx={{ textAlign: 'center', fontWeight: 'bold' }}>
             {day}
           </Box>
           </Grid>
