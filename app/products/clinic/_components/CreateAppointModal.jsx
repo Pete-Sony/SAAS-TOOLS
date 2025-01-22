@@ -9,13 +9,11 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { addHours, format } from 'date-fns';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { createEvent } from "../action";
 
 
 export default function CreateAppointModal() {
   const [open,setOpen] = React.useState(false)
-  const [date, newDate] = React.useState(new Date())
-
-
 
   const handleClick = (event) => {
     setOpen(true)
@@ -26,13 +24,10 @@ export default function CreateAppointModal() {
     setOpen(false)
 
   };
-  const handleSubmit = () => {
-
-  }
 
   return (
     <>
-      <Button variant="solid" color="primary" startDecorator={<Add />} 
+      <Button variant="solid" color="primary" startDecorator={<Add />}
         onClick={handleClick}
         sx={{
           bgcolor: "rgb(26, 115, 232)",
@@ -49,11 +44,12 @@ export default function CreateAppointModal() {
       </Button>
       <Modal open={open} onClose={handleClose}>
         <ModalDialog>
-         <form onSubmit={handleSubmit}>
+         <form action={createEvent}>
          <Stack spacing={2}>
          <FormControl required>
                 <FormLabel>Title</FormLabel>
                 <Input
+                  name="title"
                   // value={title}
                   // onChange={(e) => setTitle(e.target.value)}
                   placeholder="Appointment Title"
@@ -61,10 +57,11 @@ export default function CreateAppointModal() {
               </FormControl>
          <FormControl required>
                 <FormLabel>Date</FormLabel>
-                <LocalizationProvider  
+                <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 >
                   <DatePicker
+                    name="date"
                     // value={date}
                     // onChange={(newDate) => setDate(newDate)}
                     disablePast
@@ -73,10 +70,11 @@ export default function CreateAppointModal() {
               </FormControl>
               <FormControl required>
                 <FormLabel>Time</FormLabel>
-                <LocalizationProvider 
+                <LocalizationProvider
                 dateAdapter={AdapterDayjs}
                 >
                   <TimePicker
+                    name="time"
                     // value={time}
                     // onChange={(newTime) => setTime(newTime)}
                   />
@@ -84,7 +82,8 @@ export default function CreateAppointModal() {
               </FormControl>
               <FormControl required>
                 <FormLabel>Duration</FormLabel>
-                <Select 
+                <Select
+                  name="duration"
                   // value={duration}
                   // onChange={(_, newValue) => setDuration(newValue)}
                 >
@@ -94,7 +93,7 @@ export default function CreateAppointModal() {
                   <Option value="120">2 hours</Option>
                 </Select>
               </FormControl>
-          <Stack  direction="row" spacing={1} justifyContent="flex-end"> 
+          <Stack  direction="row" spacing={1} justifyContent="flex-end">
             <Button variant="outlined" color="neutral" onClick={handleClose}>
               Cancel
             </Button>
@@ -109,5 +108,3 @@ export default function CreateAppointModal() {
     </>
   );
 };
-
-
