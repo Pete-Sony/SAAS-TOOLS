@@ -21,9 +21,7 @@ export default function CalendarGrid() {
     const fetchAppointments = async () => {
       const data = await getAppointments();
       setAppointments(data)
-      console.log('Reached Here')
-      console.log(data);
-      
+      // console.log(data);   
     }
     fetchAppointments();
   },[])
@@ -34,7 +32,7 @@ export default function CalendarGrid() {
 
   const getAppointmentsForDate = (day) =>  {
     const filteredData = appointments.filter((apt) => apt.date === day)
-    console.log('Filtering data' , filteredData);
+    // console.log('Filtering data' , filteredData);
     return filteredData
   }
 

@@ -5,13 +5,12 @@ import { format, isToday } from 'date-fns';
 
 export default function DateCard({date,appointments=[]}) {
 
-       const isCurrentDay = isToday(date);
+  const isCurrentDay = isToday(date);
     
-     // Calculate if appointments might overflow and need truncating
-      const shouldTruncate = appointments.length > 3;
-      const visibleAppointments = shouldTruncate ? appointments.slice(0, 2) : appointments;
+  // Calculate if appointments might overflow and need truncating
+  const shouldTruncate = appointments.length > 3;
+  const visibleAppointments = shouldTruncate ? appointments.slice(0, 2) : appointments;
  
-
   const formatTime = (time) => {
     try {
       return format(new Date(`2024-01-01T${time}`), 'h:mm a');
@@ -26,25 +25,20 @@ export default function DateCard({date,appointments=[]}) {
     return day
   }
 
-
   return (
     <>
     <Sheet sx={{minHeight: '115px', bgcolor: isCurrentDay ? 'background.level1' : 'background.surface',
           '&:hover': {
               bgcolor: 'primary.100',
               transition: 'background-color 0.4s ease',
-            },
-            }} >
-           <Typography level="body-sm" fontWeight={isCurrentDay ? '1000' : '500'} sx={{ mb: 1, textAlign:"center" }}>
-             {getDay(date)}
-            </Typography>
+           },
+        }}>
+      <Typography level="body-sm" fontWeight={isCurrentDay ? '1000' : '500'} sx={{ mb: 1, textAlign:"center" }}>
+        {getDay(date)}
+      </Typography>
       <Stack spacing={0.5} sx={{ overflow: 'hidden', mb:0.5 }}>
       {visibleAppointments.map((apt) => (
-          <Chip
-            key={apt.id}
-            size="sm"
-            variant="soft"
-            color="primary"
+          <Chip key={apt.id} size="sm" variant="soft" color="primary"
             sx={{
               maxWidth: '100%',
               fontSize: '12px',
@@ -77,7 +71,7 @@ export default function DateCard({date,appointments=[]}) {
           </Chip>
         )}
         </Stack>
-        </Sheet>
+      </Sheet>
     </>
   );
 }
