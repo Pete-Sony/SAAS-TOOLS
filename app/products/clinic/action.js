@@ -25,6 +25,7 @@ export async function createEvent(eventData) {
 }
 
 export async function getAppointments() {
+  console.log('point 3')
   try {
     const appointments = await Appointment.findAll();
     console.log(appointments)

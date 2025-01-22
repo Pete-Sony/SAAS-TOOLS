@@ -24,6 +24,11 @@ export default function CreateAppointModal() {
     setOpen(false)
 
   };
+  const handleSubmit =(e) => {
+    createEvent(e)
+    setOpen(false)
+
+  }
 
   return (
     <>
@@ -44,7 +49,7 @@ export default function CreateAppointModal() {
       </Button>
       <Modal open={open} onClose={handleClose}>
         <ModalDialog>
-         <form action={createEvent}>
+         <form action={handleSubmit}>
          <Stack spacing={2}>
          <FormControl required>
                 <FormLabel>Title</FormLabel>

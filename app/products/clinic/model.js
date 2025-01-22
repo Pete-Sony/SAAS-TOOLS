@@ -1,7 +1,7 @@
 import pg from 'pg'
 import { DataTypes, Sequelize } from "sequelize"
 
-const sequelize = new Sequelize('postgresql://postgres:swedenclinic2025@db.wqcffldlsqeoshbcobzg.supabase.co:5432/postgres', {
+const sequelize = new Sequelize('postgresql://postgres.wqcffldlsqeoshbcobzg:swedenclinic2025@aws-0-ap-south-1.pooler.supabase.com:5432/postgres', {
   dialect: 'postgres',
   dialectModule: pg,
   logging: false, // Disable logging (optional)

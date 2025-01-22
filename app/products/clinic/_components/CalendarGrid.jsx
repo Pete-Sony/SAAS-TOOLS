@@ -1,15 +1,25 @@
 import React from 'react';
 import DateCard from './DateCard';
-import { Grid, Typography, Box } from '@mui/joy';
+import { Grid, Typography, Box, Button } from '@mui/joy';
 import DateCard2 from './DateCard2';
 import { AppointmentData } from '../_data/AppointmentData';
+import { getAppointments } from '../action';
 
 export default function CalendarGrid() {
+  React.useEffect(() => {
+    handleFetch()
+  }, [])
 
     const days = Array.from({ length: 31 }, (_, i) => i + 1);
+    
+    const handleFetch = ()=> {
+      // console.log("fetching")
+      getAppointments()
+    }
 
   return (
       <>
+      {/* <Button onSubmit={handleFetch}>Fetch</Button> */}
        <Box  sx={{ maxWidth:{ xs: "100%", sm: "600px", lg: "100%"}, margin:"0 auto", pt:0.2}}>
          <Typography level="h3" sx={{ mb: 2 }}> January 2025</Typography>
         <Grid container
