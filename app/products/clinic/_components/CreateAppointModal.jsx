@@ -38,7 +38,7 @@ export default function CreateAppointModal() {
   const handleSubmit = async (e) => {
     await createAppointment(e)
     setOpen(false)
-    // router.refresh()
+    router.refresh()
   }
 
   return (

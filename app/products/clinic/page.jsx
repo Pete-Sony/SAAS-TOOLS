@@ -1,9 +1,13 @@
-'use client'
+// 'use client'
 import CalendarGrid from './_components/CalendarGrid';
-export default function ComponentName() {
+import { getAppointments } from './action';
+
+export default async function page() {
+
+  const appointmentData = await getAppointments()
   return (
     <>
-      <CalendarGrid/>
+      <CalendarGrid appointments={appointmentData}/>
     </>
   );
 }

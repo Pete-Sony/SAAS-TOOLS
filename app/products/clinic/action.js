@@ -32,7 +32,7 @@ export async function getAppointments() {
   try {
     const appointments = await Appointment.findAll();
     const plainAppointments = appointments.map((appointment) => appointment.toJSON())
-    console.log(plainAppointments)
+    // console.log(plainAppointments)
     return plainAppointments
   } catch (error) {
     console.log("Error Fetching Appointments", error)

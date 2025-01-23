@@ -6,30 +6,16 @@ import { format, addDays } from 'date-fns';
 import DateCard from './DateCard';
 
 import { AppointmentData } from '../_data/AppointmentData';
-import { getAppointments } from '../action';
 
 
-export default function CalendarGrid() {
+export default function CalendarGrid({ appointments = [] }) {
 
-  const [appointments,setAppointments] = React.useState([])
+
   
   const days = Array.from({ length: 31 }, (_, i) =>{
     return format(addDays(new Date(2025, 0, 1), i), 'yyyy-MM-dd')
   });
   
-  React.useEffect(() => {
-    const fetchAppointments = async () => {
-      const data = await getAppointments();
-      setAppointments(data)
-      // console.log(data);   
-    }
-    fetchAppointments();
-  },[])
-
-  React.useEffect(() => {
-    console.log("Updated Appointments State:", appointments);
-  }, [appointments]);
-
   const getAppointmentsForDate = (day) =>  {
     const filteredData = appointments.filter((apt) => apt.date === day)
     // console.log('Filtering data' , filteredData);
